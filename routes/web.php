@@ -8,10 +8,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+
+// Route::get('/', function () {
+//     return view('home');
+// })->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
@@ -39,3 +42,4 @@ Route::view('/wadirum','wadirum')->name('wadirum');
 Route::view('/romantheater','romantheater')->name('romantheater');
 Route::view('/deadsea','deadsea')->name('deadsea');
 Route::view('/aqaba','aqaba')->name('aqaba');
+
