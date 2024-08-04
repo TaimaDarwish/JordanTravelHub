@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="relative w-full h-screen bg-cover bg-center" style="background-image: url('{{ asset('images/home.png') }}');">
-    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-        <h1 class="text-yellow-800 text-3xl md:text-4xl font-bold text-center px-4 md:px-8">
+    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30">
+        <h1 class="text-yellow-200 text-3xl md:text-4xl font-bold text-center px-4 md:px-8">
             Welcome to <br>JORDAN TRAVEL HUB
         </h1>
     </div>
