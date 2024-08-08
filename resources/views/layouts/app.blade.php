@@ -10,20 +10,19 @@
 </head>
 
 <body class="bg-yellow-800">
-    <nav class="p-6 bg-yellow-900 flex justify-between items-center relative ">
+    <nav class="p-6 bg-yellow-900 flex justify-between items-center relative">
         <div class="flex items-center space-x-4">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Flag_and_map_of_Jordan.svg" alt="Jordan logo"
                 class="h-12" />
             <h1 class="text-sm text-yellow-600 md:uppercase ">Jordan Travel Hub</h1>
         </div>
         <button id="menu-button" class="hover md:hidden text-yellow-600 text-white rounded relative ">
-            <svg class="w-6 h-6 text-gray-800 text-yellow-600 hover:bg-yellow-800 z-50" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 text-gray-800 text-yellow-600 hover:bg-yellow-800 z-50" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
             </svg>
 
         </button>
-
 
         <div id="menu-container"
             class="absolute top-full right-0 md:relative md:flex md:items-center md:space-x-5 hidden md:mt-0  bg-yellow-900 rounded p-4">

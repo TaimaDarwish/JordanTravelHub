@@ -17,8 +17,27 @@
                         @enderror
                     </div>
 
+                    <div class="mb-4">
+                        <label for="landmark" class="sr-only">Landmark</label>
+                        <select name="landmark" id="landmark" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('landmark') border-red-500 @enderror">
+                            <option value="">Select Landmark</option>
+                            <option value="petra">Petra</option>
+                            <option value="wadi_rum">Wadi Rum</option>
+                            <option value="roman_theater">Roman Theater</option>
+                            <option value="dead_sea">Dead Sea</option>
+                            <option value="aqaba">Aqaba</option>
+
+                        </select>
+
+                        @error('landmark')
+                            <div class="text-red-500 mt-2 text-sm">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
                     <div>
-                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded font-medium">Post</button>
+                        <button type="submit" class="bg-yellow-700 hover:bg-yellow-800 text-white px-4 py-2 rounded font-medium">Post</button>
                     </div>
                 </form>
             @endauth
