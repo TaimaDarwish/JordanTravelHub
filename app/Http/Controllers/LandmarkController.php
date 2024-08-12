@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Post;
 
 use Illuminate\Http\Request;
 
@@ -11,6 +12,7 @@ class LandmarkController extends Controller
     {
         $landmarks = [
             'petra' => [
+                'id' => 1,
                 'landmarkName' => 'Petra',
                 'image' => 'images/petra2.png',
                 'description' => 'Petra, the ancient city carved into the rose-red cliffs of southern Jordan, is a breathtaking testament to the ingenuity of the Nabataean civilization. This UNESCO World Heritage site, often referred to as the "Rose City," is renowned for its stunning rock-cut architecture and intricate water conduit system. Visitors to Petra can explore its magnificent structures, including the iconic Treasury and the Monastery, as they navigate through the narrow Siq canyon.',
@@ -47,8 +49,9 @@ class LandmarkController extends Controller
                 ],
             ],
             'wadirum' => [
+                'id' => 2,
                 'landmarkName' => 'Wadi Rum',
-                'image' => 'images/wadi-rum.png',
+                'image' => 'images/WadiRum.png',
                 'description' => 'Wadi Rum, also known as the Valley of the Moon, is a protected desert wilderness in southern Jordan. Known for its dramatic sandstone mountains and stunning rock formations, Wadi Rum offers a unique landscape that has been the backdrop for many films. Visitors can experience the vast desert expanse, enjoy traditional Bedouin hospitality, and explore the rich cultural heritage of the area.',
                 'activities' => [
                     'Jeep safari through the desert landscape',
@@ -81,8 +84,9 @@ class LandmarkController extends Controller
                 ],
             ],
             'aqaba' => [
+                'id' => 3,
                 'landmarkName' => 'Aqaba',
-                'image' => 'images/aqaba.png',
+                'image' => 'images/Aqaba.png',
                 'description' => 'Aqaba is Jordan’s only coastal city located on the Red Sea. It is known for its beautiful beaches, vibrant marine life, and excellent diving opportunities. Aqaba offers a range of water sports and activities, from snorkeling to kite surfing, and provides a gateway to explore the underwater world of the Red Sea.',
                 'activities' => [
                     'Snorkeling and diving in the Red Sea',
@@ -93,7 +97,7 @@ class LandmarkController extends Controller
                 ],
                 'tripOptions' => [
                     [
-                        'title' => 'Option 1: $40',
+                        'title' => 'Option 1: $70',
                         'details' => [
                             'Snorkeling gear rental',
                             'Half-day boat tour',
@@ -114,6 +118,7 @@ class LandmarkController extends Controller
                 ],
             ],
             'deadsea' => [
+                'id' => 4,
                 'landmarkName' => 'Dead Sea',
                 'image' => 'images/DeadSea.png',
                 'description' => 'The Dead Sea is a salt lake bordered by Jordan to the east and Israel and Palestine to the west. It is known for its extremely high salt content and is the lowest point on earth. The therapeutic properties of the mineral-rich waters and the surrounding mud make it a popular destination for relaxation and wellness treatments.',
@@ -126,7 +131,7 @@ class LandmarkController extends Controller
                 ],
                 'tripOptions' => [
                     [
-                        'title' => 'Option 1: $20',
+                        'title' => 'Option 1: $30',
                         'details' => [
                             'Day pass to a beach resort',
                             'Access to mud and mineral baths',
@@ -135,7 +140,7 @@ class LandmarkController extends Controller
                         'description' => 'A day pass to a beach resort with access to mud and mineral baths.',
                     ],
                     [
-                        'title' => 'Option 2: $100 for Two Days',
+                        'title' => 'Option 2: $170 for Two Days',
                         'details' => [
                             'Two-day stay at a Dead Sea resort',
                             'All meals included',
@@ -147,6 +152,7 @@ class LandmarkController extends Controller
                 ],
             ],
             'romantheater' => [
+                'id' => 5,
                 'landmarkName' => 'Roman Theater',
                 'image' => 'images/RomanTheater.png',
                 'description' => 'The Roman Theater in Amman is a well-preserved ancient Roman theater located in the heart of the city. Built during the reign of Emperor Antonius Pius, it is one of the largest and most significant Roman theaters in the region. Visitors can explore the impressive architecture and learn about the history of the Roman period in Jordan.',
@@ -180,11 +186,16 @@ class LandmarkController extends Controller
         ];
 
 
-        if (!array_key_exists($landmark, $landmarks)) {
-            abort(404);
-        }
 
-        return view('landmark', $landmarks[$landmark]);
+        $landmarkId = $landmarks[$landmark]['id'];
+
+        // Fetch posts related to the landmark
+        $posts = Post::where('landmark_id', $landmarkId)->latest()->with('user')->get();
+
+        return view('landmark.show', [
+            'landmark' => $landmarks[$landmark],
+            'posts' => $posts,
+        ]);
     }
 
 }

@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 py-8 bg-yellow-100 mt-4 rounded-lg shadow-lg">
+<!-- <div class="container mx-auto px-4 py-8 bg-yellow-100 mt-4 rounded-lg shadow-lg">
     <h1 class="text-4xl text-center text-yellow-700 font-bold mb-6">{{ $landmarkName }}</h1>
 
     <div class="flex justify-center mb-6">
@@ -43,6 +43,23 @@
             </div>
         @endforeach
     </div>
+
+    @if($isAuthenticated)
+            <h2>Create a Post</h2>
+            <form action="{{ route('posts.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="landmark_id" value="{{ $landmark['id'] }}">
+                <textarea name="body" placeholder="Write your post here..." required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        @endif
+
+        <h2>Posts</h2>
+        @foreach($posts as $post)
+            <div class="post">
+                <p><strong>{{ $post->user->name }}</strong>: {{ $post->body }}</p>
+            </div>
+        @endforeach
 </div>
 
 <script>
@@ -50,4 +67,4 @@
         var details = document.getElementById('trip-details');
         details.classList.toggle('hidden');
     });
-</script>
+</script> -->

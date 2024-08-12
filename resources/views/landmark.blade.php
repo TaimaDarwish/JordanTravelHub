@@ -1,11 +1,14 @@
-@extends('layouts.app')
+<!-- @extends('layouts.app')
 
 @section('content')
-    @include('components.landmark-page', [
+    @component('components.landmark-page', [
         'landmarkName' => $landmarkName,
         'image' => $image,
         'description' => $description,
         'activities' => $activities,
-        'tripOptions' => $tripOptions
+        'tripOptions' => $tripOptions,
+        'isAuthenticated' => $isAuthenticated,
+        'posts' => $posts
     ])
-@endsection
+    @endcomponent
+@endsection -->

@@ -9,7 +9,7 @@ use App\Models\Like;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['body','landmark'];
+    protected $fillable = ['body','landmark_id'];
 
     public function likedBy(User $user)
     {
@@ -21,6 +21,10 @@ class Post extends Model
      * Relations
      * 
      */
+    public function landmark()
+    {
+        return $this->belongsTo(Landmark::class , "landmark_id");
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,4 +33,5 @@ class Post extends Model
     {
         return $this->hasMany(Like::class);
     }
+    
 }
