@@ -12,6 +12,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->text('body');
             $table->unsignedInteger('landmark_id');
+            //$table->foreignId('user_id')->constrained()->onDelete('cascade');
+            //$table->foreignId('landmark_id')->constrained()->onDelete('cascade');
             $table->timestamps();
             
         });
@@ -22,4 +24,3 @@ class CreatePostsTable extends Migration
         Schema::dropIfExists('posts');
     }
 }
-

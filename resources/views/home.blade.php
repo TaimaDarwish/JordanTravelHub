@@ -2,8 +2,6 @@
 
 @section('content')
 
-
-
 <section class="relative">
     <div class="relative w-full h-screen bg-center bg-cover"
         style="background-image: url('{{ asset('images/home.png') }}');">
@@ -15,24 +13,23 @@
     </div>
 </section>
 
-
-    <section class="py-8 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($places as $place)
-                    <div
-                        class="bg-yellow-200 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
-                        <a href="{{ route('landmark.show', ['landmark' => $place['route']]) }}">
-                            <img src="{{ asset($place['image']) }}" alt="{{ $place['title'] }}"
-                                class="w-full h-40 object-cover">
-                            <div class="p-4">
-                                <h2 class="text-base text-yellow-800 font-bold">{{ $place['title'] }}</h2>
-                                <p class="text-yellow-700">{{ $place['description'] }}</p>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
+<section class="py-8 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach ($places as $place)
+                <div class="bg-yellow-200 shadow-lg rounded-lg overflow-hidden transition-transform duration-300 hover:scale-105">
+                <a href="{{ route('landmark.show', ['id' => $place->id]) }}">
+                <img src="{{ asset($place->image) }}" alt="{{ $place->landmarkName }}"
+                            class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h2 class="text-base text-yellow-800 font-bold">{{ $place->landmarkName }}</h2>
+                            <p class="text-yellow-700">{{ $place->description }}</p>
+                        </div>
+                    </a>
+                </div>
+            @endforeach
         </div>
-    </section>
-    @endsection
+    </div>
+</section>
+
+@endsection

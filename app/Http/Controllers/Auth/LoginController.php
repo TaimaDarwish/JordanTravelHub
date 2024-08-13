@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-   
-    
+
+
     public function index()
     {
         return view('auth.login');
@@ -25,8 +25,15 @@ class LoginController extends Controller
             return back()->with('status', 'Invalid login details');
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->intended('/posts');
     }
+
+    // protected function authenticated(Request $request, $user)
+    // {
+    //     // Redirect to the intended URL after login
+    //     return redirect()->intended('/posts');
+    // }
+
 }
 
 

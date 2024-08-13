@@ -9,7 +9,7 @@ use App\Models\Like;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable = ['body','landmark_id'];
+    protected $fillable = ['body','landmark_id','user_id'];
 
     public function likedBy(User $user)
     {
