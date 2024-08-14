@@ -25,13 +25,11 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'body' => 'required|string',
            'landmark_id' => 'required|exists:landmarks,id', 
         ]);
 
-        // dd('ok');
         $user = auth()->user();
         Post::create([
             'body' => $request->body,
@@ -39,7 +37,6 @@ class PostController extends Controller
             'user_name' => $user->username,
         ]);
         
-        // return redirect()->route('landmarks.show', $request->landmark_id);
 
         return back()->with('status', 'Post created successfully!');
     }
@@ -47,7 +44,6 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        // Check if the authenticated user is the owner of the post
         if ($post->user_id !== Auth::id()) {
             return redirect()->route('posts.index')->with('error', 'You do not have permission to delete this post.');
         }

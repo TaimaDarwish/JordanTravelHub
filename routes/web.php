@@ -12,12 +12,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandmarkController;
 
 
-// Route::get('/', function () {
-//     return 'Laravel is working!';
-// });
-
-// require base_path('routes/api.php');
-// 
 Route::prefix('api/v1')->group(function () {
     Route::get('landmarks', [LandmarkController::class, 'index']);
 
