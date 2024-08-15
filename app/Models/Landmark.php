@@ -30,5 +30,15 @@ class Landmark extends Model
     {
         return $this->hasMany(Post::class);
     }
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    // Define the relationship with trip options
+    public function tripOptions()
+    {
+        return $this->hasMany(TripOption::class);
+    }
 
 }

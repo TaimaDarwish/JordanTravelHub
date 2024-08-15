@@ -59,46 +59,46 @@
     </form>
 
     <!-- Existing Posts -->
-<h2 class="text-2xl font-semibold text-yellow-800 mb-4">Posts</h2>
+    <h2 class="text-2xl font-semibold text-yellow-800 mb-4">Posts</h2>
 
-<!-- // -->
-@if($posts->isEmpty())
-    <p class="text-lg text-yellow-700">No posts available for this landmark</p>
-@else
-    <ul class="space-y-4">
-        @foreach($posts as $post)
-            <li class="bg-white p-4 rounded-lg shadow-md">
-                <p class="text-lg text-yellow-800">{{ $post->body }}</p>
-                <p class="text-sm text-gray-600">
-                    Posted by: {{ $post->user ? $post->user->username : 'Unknown' }}
-                </p>
+    <!-- // -->
+    @if($posts->isEmpty())
+        <p class="text-lg text-yellow-700">No posts available for this landmark</p>
+    @else
+        <ul class="space-y-4">
+            @foreach($posts as $post)
+                <li class="bg-white p-4 rounded-lg shadow-md">
+                    <p class="text-lg text-yellow-800">{{ $post->body }}</p>
+                    <p class="text-sm text-gray-600">
+                        Posted by: {{ $post->user ? $post->user->username : 'Unknown' }}
+                    </p>
 
-                <!-- Like/Unlike Buttons -->
-                @if ($post->likes()->where('user_id', auth()->id())->exists())
-                    <form action="{{ route('posts.unlike', $post) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-blue-500 rounded-lg">Unlike</button>
-                    </form>
-                @else
-                    <form action="{{ route('posts.like', $post) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="text-blue-500">Like</button>
-                    </form>
-                @endif
+                    <!-- Like/Unlike Buttons -->
+                    @if ($post->likes()->where('user_id', auth()->id())->exists())
+                        <form action="{{ route('posts.unlike', $post) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-blue-500 rounded-lg">Unlike</button>
+                        </form>
+                    @else
+                        <form action="{{ route('posts.like', $post) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-blue-500">Like</button>
+                        </form>
+                    @endif
 
-                <!-- Delete Button -->
-                @if (auth()->check() && $post->user && $post->user->id === auth()->id())
-                    <form action="{{ route('posts.destroy', $post) }}" method="POST" class="mt-2">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-blue-500 rounded-lg">Delete</button>
-                    </form>
-                @endif
-            </li>
-        @endforeach
-    </ul>
-@endif
+                    <!-- Delete Button -->
+                    @if (auth()->check() && $post->user && $post->user->id === auth()->id())
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="mt-2">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-blue-500 rounded-lg">Delete</button>
+                        </form>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 
 <script>

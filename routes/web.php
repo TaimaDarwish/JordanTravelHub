@@ -11,6 +11,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandmarkController;
 
+
+Route::prefix('api/v1')->group(function () {
+    Route::get('landmarks', [LandmarkController::class, 'index']);
+
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/landmark/{id}', [LandmarkController::class, 'show'])->name('landmark.show');
 Route::get('/landmarks/{id}', [LandmarkController::class, 'show'])->name('landmarks.show');//added this for validation
