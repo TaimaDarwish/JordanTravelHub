@@ -11,7 +11,11 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LandmarkController;
 
-Route::get('/landmark/{landmark}', [LandmarkController::class, 'show'])->name('landmark.show');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/landmark/{id}', [LandmarkController::class, 'show'])->name('landmark.show');
+Route::get('/landmarks/{id}', [LandmarkController::class, 'show'])->name('landmarks.show');//added this for validation
+
+// Route::get('/landmark/{landmark}', [LandmarkController::class, 'show']);
 
 // Route::view('/petra','petra')->name('petra');
 // Route::view('/wadirum','wadirum')->name('wadirum');
@@ -19,7 +23,7 @@ Route::get('/landmark/{landmark}', [LandmarkController::class, 'show'])->name('l
 // Route::view('/deadsea','deadsea')->name('deadsea');
 // Route::view('/aqaba','aqaba')->name('aqaba');
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
@@ -33,16 +37,24 @@ Route::post('/login', [LoginController::class, 'store']);
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
-//////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::post('/posts', [PostController::class, 'store']);
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+// Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+// Route::post('/posts', [PostController::class, 'store']);
+// Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 // Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 // Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
 
-Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
-Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
+
+Route::post('/posts/{post}/like', [PostLikeController::class, 'store'])->name('posts.like')->middleware('auth');
+Route::delete('/posts/{post}/like', [PostLikeController::class, 'destroy'])->name('posts.unlike')->middleware('auth');
+
+// Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
+// Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
 
 
 

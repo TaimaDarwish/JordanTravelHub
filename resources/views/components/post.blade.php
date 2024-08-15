@@ -5,11 +5,7 @@
     <span class="text-gray-600 text-sm">{{ $post->created_at->diffForHumans() }}</span>
 
     <p class="mb-2">{{ $post->body }}</p>
-
-    <!-- add the chosen landmark -->
-    @if ($post->landmark)
-        <p class="mb-1 "><strong class="text-yellow-800">Landmark:</strong> {{ ucfirst(str_replace('_', ' ', $post->landmark)) }}</p>
-    @endif
+   
 
     @can('delete', $post)
         <form action="{{ route('posts.destroy', $post) }}" method="post">
