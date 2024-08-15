@@ -24,13 +24,19 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'body' => 'required'
+            'body' => 'required|string',
+            'landmark' => 'required|string|in:petra,wadi_rum,roman_theater,dead_sea,aqaba',
         ]);
-        $request->user()->posts()->create($request->only('body'));
+    
+        $request->user()->posts()->create([
+            'body' => $request->body,
+            'landmark' => $request->landmark,
+        ]);
+    
         return back()->with('status', 'Post created successfully!');
     }
+    
     public function destroy(Post $post){
-            //$this->authorize('delete',$post);
             $post->delete();
             return back();
     }

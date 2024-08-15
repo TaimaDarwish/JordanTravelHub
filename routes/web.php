@@ -8,10 +8,18 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LandmarkController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/landmark/{landmark}', [LandmarkController::class, 'show'])->name('landmark.show');
+
+// Route::view('/petra','petra')->name('petra');
+// Route::view('/wadirum','wadirum')->name('wadirum');
+// Route::view('/romantheater','romantheater')->name('romantheater');
+// Route::view('/deadsea','deadsea')->name('deadsea');
+// Route::view('/aqaba','aqaba')->name('aqaba');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
@@ -30,12 +38,13 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::post('/posts', [PostController::class, 'store']);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+// Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+// Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::post('/posts/{post}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
 Route::delete('/posts/{post}/likes', [PostLikeController::class, 'destroy'])->name('posts.likes');
 
-Route::view('/petra','petra')->name('petra');
-Route::view('/wadirum','wadirum')->name('wadirum');
-Route::view('/romantheater','romantheater')->name('romantheater');
-Route::view('/deadsea','deadsea')->name('deadsea');
-Route::view('/aqaba','aqaba')->name('aqaba');
+
+
+
+
